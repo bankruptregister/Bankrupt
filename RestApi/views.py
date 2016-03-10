@@ -22,11 +22,15 @@ class JudgeList(APIView):
         return Response(serializer.data,status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
+        if(exists_id(request.data,Judge)):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
         serializer = JudgeSerializer(data=request.data)
+        print request.data
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class JudgeSingle(APIView):
     """
     Retrieve, update or delete a snippet instance.
@@ -46,6 +50,7 @@ class JudgeSingle(APIView):
         judge = self.get_object(id)
         serializer = JudgeSerializer(judge, data=request.data)
         if serializer.is_valid():
+            print serializer.validated_data
             serializer.save()
             return Response(serializer.data,status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -56,28 +61,61 @@ class JudgeSingle(APIView):
         judge.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class DebterList(generics.ListCreateAPIView):
-    queryset = Debter.objects.all()
-    serializer_class = DebterSerializer
-    lookup_field = 'id'
+class DebterList(APIView):
+    def get(self, request, format=None):
+        js = Debter.objects.all()
+        serializer = DebterSerializer(js, many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
+    def post(self, request, format=None):
+        if(exists_id(request.data,Debter)):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        serializer = DebterSerializer(data=request.data)
+        print request.data
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class DebterSingle(generics.RetrieveUpdateDestroyAPIView):
     queryset = Debter.objects.all()
     serializer_class = DebterSerializer
     lookup_field = 'id'
 
-class CourtList(generics.ListCreateAPIView):
-    queryset = Court.objects.all()
-    serializer_class = CourtSerializer
-    lookup_field = 'id'
+class CourtList(APIView):
+    def get(self, request, format=None):
+        js = Court.objects.all()
+        serializer = CourtSerializer(js, many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
+    def post(self, request, format=None):
+        if(exists_id(request.data,Court)):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        serializer = CourtSerializer(data=request.data)
+        print request.data
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class CourtSingle(generics.RetrieveUpdateDestroyAPIView):
     queryset = Court.objects.all()
     serializer_class = CourtSerializer
     lookup_field = 'id'
 
-class ComissionerList(generics.ListCreateAPIView):
-    queryset = Comissioner.objects.all()
-    serializer_class = ComissionerSerializer
-    lookup_field = 'id'
+class ComissionerList(APIView):
+    def get(self, request, format=None):
+        js = Comissioner.objects.all()
+        serializer = ComissionerSerializer(js, many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
+    def post(self, request, format=None):
+        if(exists_id(request.data,Comissioner)):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        serializer = ComissionerSerializer(data=request.data)
+        print request.data
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class ComissionerSingle(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comissioner.objects.all()
     serializer_class = ComissionerSerializer
@@ -85,14 +123,26 @@ class ComissionerSingle(generics.RetrieveUpdateDestroyAPIView):
 
 
 #Shoud be better solution
-class ActList(generics.ListCreateAPIView):
-    queryset = Act.objects.all()
-    serializer_class = ActSerializer
-    lookup_field = 'id'
+class ActList(APIView):
+    def get(self, request, format=None):
+        js = Act.objects.all()
+        serializer = ActSerializer(js, many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
+    def post(self, request, format=None):
+        if(exists_id(request.data,Act)):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        serializer = ActSerializer(data=request.data)
+        print request.data
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class ActSingle(generics.RetrieveUpdateDestroyAPIView):
     queryset = Act.objects.all()
     serializer_class = ActSerializer
     lookup_field = 'id'
+
 
 def generate_acts(request):
     Act.objects.all().delete()
@@ -136,3 +186,11 @@ def generate_acts(request):
                   debterid = debter)
         act.save()
     return redirect("/admin")
+def exists_id(data,obj):
+    if "id" in data:
+        try:
+            print obj.objects.get(id=data["id"])
+            return True
+        except:
+            return False
+    return False

@@ -6,7 +6,6 @@ class JudgeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Judge
         fields = ['id','name','surname','middlename']
-
 class DebterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Debter

@@ -13,7 +13,7 @@ from django.db import models
 
 
 class Act(models.Model):
-    id = models.AutoField(primary_key=True) # Field name made lowercase.
+    id = models.AutoField(primary_key=True,unique=True) # Field name made lowercase.
     startdate = models.DateField(db_column='StartDate', blank=True, null=True)  # Field name made lowercase.
     finishdate = models.DateField(db_column='FinishDate', blank=True, null=True)  # Field name made lowercase.
     notes = models.TextField(db_column='Notes', blank=True, null=True)  # Field name made lowercase.
@@ -24,21 +24,21 @@ class Act(models.Model):
 
 
 class Comissioner(models.Model):
-    id = models.AutoField(primary_key=True)  # Field name made lowercase.
+    id = models.AutoField(primary_key=True,unique=True)  # Field name made lowercase.
     powertype = models.CharField(db_column='PowerType', max_length=45, blank=True, null=True)  # Field name made lowercase.
     certificatenumber = models.CharField(db_column='CertificateNumber', max_length=45, blank=True, null=True)  # Field name made lowercase.
     setdate = models.DateField(db_column='SetDate', blank=True, null=True)  # Field name made lowercase.
     notes = models.CharField(db_column='Notes', max_length=45, blank=True, null=True)  # Field name made lowercase.
 
 class Court(models.Model):
-    id = models.AutoField(primary_key=True)  # Field name made lowercase.
+    id = models.AutoField(primary_key=True,unique=True)  # Field name made lowercase.
     number = models.CharField(db_column='Number', max_length=45, blank=True, null=True)  # Field name made lowercase.
     address = models.CharField(db_column='Address', max_length=100, blank=True, null=True)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=45, blank=True, null=True)  # Field name made lowercase.
 
 
 class Debter(models.Model):
-    id = models.AutoField(primary_key=True)  # Field name made lowercase.
+    id = models.AutoField(primary_key=True,unique=True)  # Field name made lowercase.
     type = models.IntegerField(db_column='Type', blank=True, null=True)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=45, blank=True, null=True)  # Field name made lowercase.
     number = models.CharField(db_column='Number', max_length=45, blank=True, null=True)  # Field name made lowercase.
@@ -49,7 +49,7 @@ class Debter(models.Model):
 
 
 class Judge(models.Model):
-    id = models.AutoField(primary_key=True)  # Field name made lowercase.
+    id = models.AutoField(primary_key=True,unique=True)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=45, blank=True, null=True)  # Field name made lowercase.
     surname = models.CharField(db_column='Surname', max_length=45, blank=True, null=True)  # Field name made lowercase.
     middlename = models.CharField(db_column='MiddleName', max_length=45, blank=True, null=True)  # Field name made lowercase.
