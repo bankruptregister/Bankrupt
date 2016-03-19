@@ -9,141 +9,170 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
+from rest_framework.decorators import api_view
 from random import randint
 
-
-class JudgeList(APIView):
-    """
-    List all snippets, or create a new snippet.
-    """
-    def get(self, request, format=None):
+@api_view(['GET','POST','PUT'])
+def judgeList(request):
+    if request.method == 'GET':
         js = Judge.objects.all()
         serializer = JudgeSerializer(js, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
-
-    def post(self, request, format=None):
-        if(exists_id(request.data,Judge)):
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'POST' or request.method == 'PUT':
+        # if(exists_id(request.data,Judge)):
+        #     return Response(status=status.HTTP_400_BAD_REQUEST)
         serializer = JudgeSerializer(data=request.data)
-        print request.data
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['GET','POST','PUT','DELETE'])
+def judgeSingle(request,id):
 
-class JudgeSingle(APIView):
-    """
-    Retrieve, update or delete a snippet instance.
-    """
-    def get_object(self, id):
-        try:
-            return Judge.objects.get(id=id)
-        except Judge.DoesNotExist:
-            raise Http404
-
-    def get(self, request, id, format=None):
-        judge = self.get_object(id)
+    if request.method == 'GET':
+        judge = get_object(id,Judge)
         serializer = JudgeSerializer(judge)
-        return Response(serializer.data)
+        return Response(serializer.data,status=status.HTTP_200_OK)
 
-    def put(self, request, id, format=None):
-        judge = self.get_object(id)
+    if request.method == 'PUT' or request.method == 'POST':
+        judge = get_object(id,Judge)
         serializer = JudgeSerializer(judge, data=request.data)
         if serializer.is_valid():
-            print serializer.validated_data
             serializer.save()
-            return Response(serializer.data,status=status.HTTP_200_OK)
+            return Response(serializer.data,status=status.HTTP_202_ACCEPTED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, id, format=None):
-        print id
-        judge = self.get_object(id)
+    if request.method == 'DELETE':
+        judge = get_object(id,Judge)
         judge.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_202_ACCEPTED)
 
-class DebterList(APIView):
-    def get(self, request, format=None):
+@api_view(['GET','POST','PUT'])
+def debterList(request):
+    if request.method == 'GET':
         js = Debter.objects.all()
         serializer = DebterSerializer(js, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
-
-    def post(self, request, format=None):
-        if(exists_id(request.data,Debter)):
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'POST' or request.method == 'PUT':
         serializer = DebterSerializer(data=request.data)
-        print request.data
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-class DebterSingle(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Debter.objects.all()
-    serializer_class = DebterSerializer
-    lookup_field = 'id'
+@api_view(['GET','POST','PUT','DELETE'])
+def debterSingle(request,id):
+    if request.method == 'GET':
+        debter = get_object(id,Debter)
+        serializer = DebterSerializer(debter)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+    if request.method == 'PUT' or request.method == 'POST':
+        debter = get_object(id,Debter)
+        serializer = DebterSerializer(debter, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'DELETE':
+        debter = get_object(id,Debter)
+        debter.delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
 
-class CourtList(APIView):
-    def get(self, request, format=None):
+@api_view(['GET','POST','PUT'])
+def courtList(request):
+    if request.method == 'GET':
         js = Court.objects.all()
         serializer = CourtSerializer(js, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
-
-    def post(self, request, format=None):
-        if(exists_id(request.data,Court)):
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'POST' or request.method == 'PUT':
         serializer = CourtSerializer(data=request.data)
-        print request.data
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-class CourtSingle(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Court.objects.all()
-    serializer_class = CourtSerializer
-    lookup_field = 'id'
+@api_view(['GET','POST','PUT','DELETE'])
+def courtSingle(request,id):
+    if request.method == 'GET':
+        court = get_object(id,Court)
+        serializer = CourtSerializer(court)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+    if request.method == 'PUT' or request.method == 'POST':
+        court = get_object(id,Court)
+        serializer = CourtSerializer(court, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'DELETE':
+        court = get_object(id,Court)
+        court.delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
 
-class ComissionerList(APIView):
-    def get(self, request, format=None):
+@api_view(['GET','POST','PUT'])
+def comissionerList(request):
+    if request.method == 'GET':
         js = Comissioner.objects.all()
         serializer = ComissionerSerializer(js, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
-
-    def post(self, request, format=None):
-        if(exists_id(request.data,Comissioner)):
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'POST' or request.method == 'PUT':
         serializer = ComissionerSerializer(data=request.data)
-        print request.data
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-class ComissionerSingle(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Comissioner.objects.all()
-    serializer_class = ComissionerSerializer
-    lookup_field = 'id'
+@api_view(['GET','POST','PUT','DELETE'])
+def comissionerSingle(request,id):
+    if request.method == 'GET':
+        comissioner = get_object(id,Comissioner)
+        serializer = ComissionerSerializer(comissioner)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+    if request.method == 'PUT' or request.method == 'POST':
+        comissioner = get_object(id,Comissioner)
+        serializer = ComissionerSerializer(comissioner, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'DELETE':
+        comissioner = get_object(id,Comissioner)
+        comissioner.delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
 
-
-#Shoud be better solution
-class ActList(APIView):
-    def get(self, request, format=None):
+@api_view(['GET','POST','PUT'])
+def actList(request):
+    if request.method == 'GET':
         js = Act.objects.all()
         serializer = ActSerializer(js, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
-
-    def post(self, request, format=None):
-        if(exists_id(request.data,Act)):
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'POST' or request.method == 'PUT':
         serializer = ActSerializer(data=request.data)
-        print request.data
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-class ActSingle(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Act.objects.all()
-    serializer_class = ActSerializer
-    lookup_field = 'id'
+@api_view(['GET','POST','PUT','DELETE'])
+def actSingle(request,id):
+    if request.method == 'GET':
+        act = get_object(id,Act)
+        serializer = ActSerializer(act)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+    if request.method == 'PUT' or request.method == 'POST':
+        act = get_object(id,Act)
+        serializer = ActSerializer(act, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'DELETE':
+        act = get_object(id,Act)
+        act.delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
 
 
+# Helpers
+def get_object(id,model):
+        try:
+            return model.objects.get(id=id)
+        except model.DoesNotExist:
+            raise Http404
 def generate_acts(request):
     Act.objects.all().delete()
     Judge.objects.all().delete()

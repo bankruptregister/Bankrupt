@@ -25,6 +25,9 @@ SECRET_KEY = '0%8akaek5c2_9m4&w6=_)*o@eqmv#5qxxzr27kco_&qhnw=6_8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Allow POST without appending slash
+#APPEND_SLASH=False
+
 ALLOWED_HOSTS = []
 
 
