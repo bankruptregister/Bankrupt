@@ -1,0 +1,47 @@
+<div class="form-group" style="margin-left: 30%" >
+    <div class="col-md-6" >
+        <div class="form-area">
+            <form role="form" name="myForm" novalidate>
+                <h3 style="margin-top: 30px; margin-bottom: 60px;" >Редагування інформації про суддю</h3>
+                <div class="form-group">
+                    <label class="control-label" for="Name">Ім'я</label>
+                    <input class="form-control" type="text" id="Name"
+                           name="name" required minlength="2" maxlength="20"
+                           ng-model="currentItem.name" />
+                    <div class="error" ng-show="myForm.name.$dirty && myForm.name.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.name.$error.minlength || myForm.name.$error.maxlength">
+                        Поле має містити від 2-х до 20 символів
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label " for="MiddleName">По-батькові</label>
+                    <input class="form-control" type="text" id="MiddleName"
+                           name="middlename" required minlength="2" maxlength="20"
+                           ng-model="currentItem.middlename" />
+                    <div class="error" ng-show="myForm.middlename.$dirty && myForm.middlename.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.middlename.$error.minlength || myForm.middlename.$error.maxlength">
+                        Поле має містити від 2-х до 20 символів
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label " for="Surname">Прізвище</label>
+                    <input class="form-control" type="text" id="Surname"
+                           name="surname" required minlength="3" maxlength="20"
+                           ng-model="currentItem.surname"/>
+                    <div class="error" ng-show="myForm.surname.$dirty && myForm.surname.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.surname.$error.minlength || myForm.surname.$error.maxlength">
+                        Поле має містити від 2-х до 20 символів
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right" ng-disabled="myForm.$invalid" ng-click="edit(currentItem)">Зберегти</button>
+            </form>
+        </div>
+    </div>
+</div>

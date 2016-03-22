@@ -1,0 +1,17 @@
+        .ng-valid{
+            background-color:#DBEDD5;
+
+        }
+        .ng-invalid{
+            background-color:#EBCACA;
+        }
+        .ng-pristine{
+            background-color:#fff;
+        }
+        .error{
+            color: red;
+            font-weight:bold;
+        }
+        form.ng-invalid, form.ng-valid {
+            background-color:#fff;
+        }

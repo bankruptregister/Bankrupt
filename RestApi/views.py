@@ -1,16 +1,20 @@
 import datetime
 
 from django.shortcuts import redirect
+from django.shortcuts import render_to_response
+from django.template.loader import get_template
 
 from models import Judge,Comissioner,Act,Court,Debter
 from serializers import JudgeSerializer,DebterSerializer,ComissionerSerializer,CourtSerializer,ActSerializer
 from django.http import Http404
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import generics
 from rest_framework.decorators import api_view
+from rest_framework import generics
 from random import randint
+
+def getIndex(request):
+    return render_to_response('index.html')
 
 @api_view(['GET','POST','PUT'])
 def judgeList(request):
@@ -173,7 +177,8 @@ def get_object(id,model):
             return model.objects.get(id=id)
         except model.DoesNotExist:
             raise Http404
-def generate_acts(request):
+def generate_acts(request,count):
+    count = int(count)
     Act.objects.all().delete()
     Judge.objects.all().delete()
     Comissioner.objects.all().delete()
@@ -184,7 +189,7 @@ def generate_acts(request):
     surname_base = ["Peterson", "Ronny","Wilson","Test1","Rew","Gostly","Amigo"]
     word_len =len(word_base)-1
     surname_len = len(surname_base)-1
-    for i in xrange(10):
+    for i in xrange(count):
         judge = Judge(name = word_base[randint(0,word_len)],
                       surname = surname_base[randint(0,surname_len)],
                       middlename = word_base[randint(0,word_len)])
@@ -214,7 +219,8 @@ def generate_acts(request):
                   courtid = court,
                   debterid = debter)
         act.save()
-    return redirect("/admin")
+    return redirect("/index")
+
 def exists_id(data,obj):
     if "id" in data:
         try:
@@ -223,3 +229,4 @@ def exists_id(data,obj):
         except:
             return False
     return False
+

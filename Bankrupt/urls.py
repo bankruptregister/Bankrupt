@@ -18,7 +18,8 @@ from django.contrib import admin
 from RestApi import views
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/$', include(admin.site.urls)),
     url(r'^restapi/',include('RestApi.urls')),
-    url(r'^generateDb/',views.generate_acts)
+    url(r'^generateDb/(?P<count>\d+)/',views.generate_acts),
+     url(r'^index/$',views.getIndex),
 ]

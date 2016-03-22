@@ -26,7 +26,7 @@ SECRET_KEY = '0%8akaek5c2_9m4&w6=_)*o@eqmv#5qxxzr27kco_&qhnw=6_8'
 DEBUG = True
 
 # Allow POST without appending slash
-#APPEND_SLASH=False
+# APPEND_SLASH=False
 
 ALLOWED_HOSTS = []
 
@@ -57,10 +57,15 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'Bankrupt.urls'
 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+             os.path.join(BASE_DIR, 'Bankrupt/templates'),
+
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,3 +114,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    ('static','Bankrupt/static')
+)
