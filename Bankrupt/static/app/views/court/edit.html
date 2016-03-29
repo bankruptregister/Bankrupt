@@ -1,0 +1,54 @@
+<div class="form-group" style="margin-left: 30%" >
+    <div class="col-md-6" >
+        <div class="form-area">
+            <form role="form" name="myForm" novalidate>
+                <h3 style="margin-top: 30px; margin-bottom: 60px;" >Редагування інформації про суд</h3>
+                <div class="form-group">
+                    <label class="control-label" for="Name">Найменування суду</label>
+                    <input class="form-control" type="text" id="Name"
+                           name="name" required minlength="2" maxlength="30"
+                           ng-model="currentItem.name" />
+                    <div class="error" ng-show="myForm.name.$dirty && myForm.name.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.name.$error.minlength || myForm.name.$error.maxlength">
+                        Поле має містити від 2-х до 30 символів
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label " >Адреса суду</label>
+                    <input class="form-control" type="text"
+                           name="address" required minlength="2" maxlength="40"
+                           ng-model="currentItem.address" />
+                    <div class="error" ng-show="myForm.address.$dirty && myForm.address.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.address.$error.minlength || myForm.address.$error.maxlength">
+                        Поле має містити від 2-х до 40 символів
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label " >Код суду</label>
+                    <input class="form-control" type="text"
+                           name="number" required pattern="\d{3}"
+                           ng-model="currentItem.number"/>
+                    <div class="error" ng-show="myForm.surname.$dirty && myForm.surname.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.surname.$error.pattern">
+                        Поле 3 цифри
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right" ng-disabled="myForm.$invalid" ng-click="edit(currentItem)">
+                    Зберегти
+                </button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

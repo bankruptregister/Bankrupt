@@ -1,0 +1,99 @@
+<div class="form-group" style="margin-left: 30%;">
+    <div class="col-md-6" style="padding-bottom: 200px">
+        <div class="form-area">
+            <form role="form" name="myForm" novalidate>
+                <h4 style="margin-top: 0px; margin-bottom: 20px;">Створення новоъ справи</h4>
+
+                <div class="form-group start-date">
+                    <label class="control-label " for="start-date">Дата порушення справи:</label>
+
+                    <div class="input-group start-date">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"
+                                                              ng-click=""></span>
+                        </span>
+                        <input type="date" class="form-control"
+                               datepicker-popup ng-model="item.startdate" is-open="o1"
+                               max-date="item.finishdate" show-weeks="false" ng-focus="o1 = true"
+                               ng-required="true" close-text="Close" id="start-date" name="createdate"
+                        />
+                    </div>
+                    <div class="error" ng-show="myForm.createdate.$dirty && myForm.createdate.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+
+                </div>
+
+                <div class="form-group finish-date">
+                    <label class="control-label" for="finish-date">Дата завершення справи:</label>
+
+                    <div class="input-group registration-date-time">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"
+                                                              aria-hidden="true"></span></span>
+                        <input type="date" class="form-control"
+                               datepicker-popup ng-model="item.finishdate" is-open="o2"
+                               min-date="item.startdate" show-weeks="false" ng-focus="o2 = true"
+                               close-text="Close" id="finish-date" ng-required="false"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="debter">Боржник</label>
+                     <i ng-show="loaddebter" class="fa fa-cog fa-spin"></i>
+                    <input type="text" ng-model="item.debterid" placeholder="Оберіть боржника"
+                           typeahead="item as item.name +' '+item.number+' '+ item.kved for item in debters | filter: $viewValue | limitTo : 10"
+                           typeahead-loading="loaddebter" class="form-control" typeahead-editable="false"
+                           ng-focus="getDebters()" name="debter" ng-required="true"
+                    />
+                    <div class="error" ng-show="myForm.debter.$dirty && myForm.debter.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="court">Суд</label>
+                     <i ng-show="loadcourt" class="fa fa-cog fa-spin"></i>
+                    <input type="text" ng-model="item.courtid" placeholder="Оберіть суд"
+                           typeahead="item as item.name +' '+item.address+' '+ item.number for item in courts | filter: $viewValue | limitTo : 10"
+                           typeahead-loading="loadcourt" class="form-control" typeahead-editable="false" name="court"
+                           ng-focus="getCourts()" ng-required="true"
+                    />
+                    <div class="error" ng-show="myForm.court.$dirty && myForm.court.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="judge">Суддя</label>
+                     <i ng-show="loadjudge" class="fa fa-cog fa-spin"></i>
+                    <input type="text" ng-model="item.judgeid" placeholder="Оберіть суддю"
+                           typeahead="item as item.name +' '+item.surname+' '+ item.middlename for item in judges | filter: $viewValue | limitTo : 10"
+                           typeahead-loading="loadjudge" class="form-control" typeahead-editable="false" name="judge"
+                           ng-focus="getJudges()" ng-required="true"
+                    />
+                    <div class="error" ng-show="myForm.judge.$dirty && myForm.judge.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="comissioner">Арбітражний керуючий</label>
+                     <i ng-show="loadcomissioner" class="fa fa-cog fa-spin"></i>
+                    <input type="text" ng-model="item.comissionerid"  placeholder="Оберіть арбітражного керуючого"
+                           typeahead="item as item.certificatenumber +' '+item.powertype for item in comissioners | filter: $viewValue | limitTo : 10"
+                           typeahead-loading="loadcomissioner" typeahead-editable="false" name="comissioner"
+                           class="form-control" ng-focus="getComissioners()" ng-required="true"
+                    />
+                    <div class="error" ng-show="myForm.comissioner.$dirty && myForm.comissioner.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" type="textarea" id="message" ng-model="item.notes"
+                              placeholder="Додаткова інформація про справу" rows="3"></textarea>
+                </div>
+                <button type="submit" ng-disabled="myForm.$invalid" ng-click="stripAndAdd(item)" class="btn btn-primary pull-right">Додати</button>
+            </form>
+        </div>
+    </div>
+
+</div>

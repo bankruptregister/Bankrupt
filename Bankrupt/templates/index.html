@@ -16,22 +16,28 @@
     <link href="{% static 'css/bootstrap/bootstrap-theme.css' %}" rel="stylesheet" />
     <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
     <link href="{% static 'css/validation.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/ng-table.min.css' %}" rel="stylesheet" />
 
     <script src="{% static 'js/jquery-1.12.2.js' %}"></script>
     <script src="{% static 'js/angular/angular.js' %}"></script>
     <script src="{% static 'js/angular/angular-resource.js' %}"></script>
     <script src="{% static 'js/angular/angular-mocks.js' %}"></script>
     <script src="{% static 'js/angular/angular-route.js' %}"></script>
-    <script src="{% static 'js/angular/ui-bootstrap-tpls-0.11.0.js' %}"></script>
-    <script src="{% static 'js/ng-table.js' %}"> </script>
+    <script src="{% static 'js/angular/ui-bootstrap-tpls-0.13.0.js' %}"></script>
     <script src="{% static 'app/app.js' %}"> </script>
     <script src="{% static 'app/controllers/JudgeCtrl.js' %}"> </script>
-    <script src="{% static 'app/directives/confirmDelete.js' %}"> </script>
+    <script src="{% static 'app/controllers/DebterCtrl.js' %}"> </script>
+    <script src="{% static 'app/controllers/ComissionerCtrl.js' %}"> </script>
+    <script src="{% static 'app/controllers/CourtCtrl.js' %}"> </script>
+    <script src="{% static 'app/controllers/ActCtrl.js' %}"> </script>
+    <script src="{% static 'app/controllers/DetailsCtrl.js' %}"> </script>
+
+    <script src="{% static 'app/services/actData.js' %}"> </script>
+    <script src="{% static 'app/services/dataStripper.js' %}"> </script>
+    <script src="{% static 'app/services/detailsModal.js' %}"> </script>
 
 
 </head>
-<body ng-app="Bankrupt">
+<body ng-app="Bankrupt" >
 
 
 <div ng-include="'/static/app/views/nav.html'"></div>

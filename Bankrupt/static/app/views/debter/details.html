@@ -1,0 +1,45 @@
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default panel-table">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col col-xs-6">
+                        <h3 class="panel-title">Детальна інформація про боржника</h3>
+                    </div>
+                    <br>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-responsive">
+                            <tr>
+                                <td >Ознака особи</td>
+                                <td>{{ item.type }}</td>
+                            </tr>
+                            <tr>
+                                <td>Повна назва боржника</td>
+                                <td>{{ item.name }}</td>
+                            </tr>
+                            <tr>
+                                <td>Код за ЄДРПОУ/ІПН</td>
+                                <td>{{ item.number }}</td>
+                            </tr>
+
+                            <tr>
+                                <td> КВЕД</td>
+                                <td>{{ item.kved }}</td>
+                            </tr>
+                            <tr>
+                                <td>Частка державної власності в статутному капіталі</td>
+                                <td>{{ item.statepart }}</td>
+                            </tr>
+                            <tr>
+                                <td>Судова процедура, в якій перебуває боржник</td>
+                                <td>{{ item.actname }}</td>
+                            </tr>
+                            <tr>
+                                <td>Відомості про стан провадження</td>
+                                <td>{{ item.notes }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

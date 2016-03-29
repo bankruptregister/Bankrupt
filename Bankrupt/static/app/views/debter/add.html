@@ -1,0 +1,78 @@
+<div class="form-group" style="margin-left: 30%" >
+    <div class="col-md-6" >
+        <div class="form-area">
+            <form role="form" name="myForm" novalidate>
+                <h3 style="margin-top: 0px; margin-bottom: 20px;" >Створення нового боржника</h3>
+                <div class="form-group form-inline">
+                    <label>Ознака особи:</label>
+                    <div class="radio" style="margin-left: 35px;">
+                        <label><input type="radio" name="type" ng-model="item.type"   value="1">Юридична</label>
+                    </div>
+                    <div class="radio" style="margin-left: 35px;">
+                        <label><input type="radio" name="type" ng-model="item.type" value="0">Фізична</label>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="control-label " for="Name">Повна назва боржника</label>
+                    <input class="form-control"  id="Name" name="name" ng-model="item.name" required minlength="2" maxlength="20" />
+                    <div class="error" ng-show="myForm.name.$dirty && myForm.name.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.name.$error.minlength || myForm.name.$error.maxlength">
+                        Поле має містити від 2-х до 20 символів
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label " for="Number">Код за ЄДРПОУ/ІПН</label>
+                    <input class="form-control" type="number" id="Number" required pattern="\d{8,12}" name="number" ng-model="item.number"  >
+                    <div class="error" ng-show="myForm.number.$dirty && myForm.number.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.number.$error.pattern">
+                        Поле має містити  від 8-ми до 12-ти цифр
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label " for="KVED">КВЕД</label>
+                    <input class="form-control" id="KVED" required minlength="5" maxlength="20" name="kved" ng-model="item.kved" />
+                    <div class="error" ng-show="myForm.kved.$dirty && myForm.kved.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.kved.$error.minlength || myForm.kved.$error.maxlength">
+                        Поле має містити від 5-ти до 20 символів
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label " for="StatePart">Частка державної власності в статутному капіталі</label>
+                    <input class="form-control"  id="StatePart" required minlength="5" maxlength="20"  name="statepart" ng-model="item.statepart" />
+                    <div class="error" ng-show="myForm.statepart.$dirty && myForm.statepart.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.statepart.$error.minlength || myForm.statepart.$error.maxlength">
+                        Поле має містити від 5-ти до 20 символів
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label " for="ActName">Судова процедура, в якій перебуває боржник</label>
+                    <input class="form-control"  id="ActName" required minlength="5" maxlength="20" name="actname" ng-model="item.actname"  />
+                    <div class="error" ng-show="myForm.actname.$dirty && myForm.actname.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.actname.$error.minlength || myForm.actname.$error.maxlength">
+                        Поле має містити від 5-ти до 20 символів
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label " for="Notes">Відомості про стан провадження</label>
+                    <textarea class="form-control" type="textarea" id="Notes" rows="3" maxlength="20" name="notes" ng-model="item.notes" ></textarea>
+                    <div class="error" ng-show=" myForm.notes.$error.maxlength">
+                        Поле має містити від 5-ти до 20 символів
+                    </div>
+                </div>
+
+                <button type="button" ng-disabled="myForm.$invalid" ng-click="add(item)" class="btn btn-primary pull-right">Додати</button>
+            </form>
+        </div>
+    </div>
+</div>

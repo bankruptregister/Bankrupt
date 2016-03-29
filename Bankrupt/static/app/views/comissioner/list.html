@@ -1,13 +1,13 @@
-<div class="form-group" ng-controller="JudgeCtrl">
+<div class="form-group" >
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default panel-table">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col col-xs-6">
-                        <h2 class="panel-title">Судді</h2>
+                        <h2 class="panel-title">Арбітражні керуючі</h2>
                     </div>
                     <div class="col col-xs-6 text-right">
-                        <a href="#/judge/add" type="button" class="btn btn-primary ">Додати суддю</a>
+                        <a href="#/comissioner/add" type="button" class="btn btn-primary ">Додати арбітражного керуючого</a>
                     </div>
                 </div>
             </div>
@@ -19,18 +19,21 @@
                     <thead>
                     <tr>
 
-                        <th>Ім'я</th>
-                        <th>По-батькові</th>
-                        <th >Прізвище</th>
+                        <th>Номер сертифікату</th>
+                        <th>Вид повноважень</th>
+                        <th >Дата видачі сертифікату</th>
+                        <th>Відомості про перерозподіл арбітражного керуючого у справі</th>
                         <th><em class="fa fa-cog"></em></th>
 
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="item in filteredJudges">
-                        <td  >{{ item.name }}</td>
-                        <td  >{{ item.surname }}</td>
-                        <td  >{{ item.middlename }}</td>
+                    <tr ng-repeat="item in filteredComissioners">
+                        <td  >{{ item.certificatenumber }}</td>
+                        <td  >{{ item.powertype }}</td>
+                        <td  >{{ item.setdate }}</td>
+                        <td  >{{ item.notes }}</td>
+
                         <td align="center">
                             <button  class="btn btn-default" ng-click="editStart(item)"><em class="fa fa-pencil"></em></button>
                             <button type="button" class="btn btn-danger" data-target="#modal-1" data-toggle="modal"  ng-click="$parent.todelete = item" >

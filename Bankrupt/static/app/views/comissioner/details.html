@@ -1,0 +1,32 @@
+<div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default panel-table">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col col-xs-6">
+                        <h3 class="panel-title">Детальна інформація про арбітражного керуючого</h3>
+                    </div>
+                    <br>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-responsive">
+                            <tr>
+                                <td >Вид повноважень</td>
+                                <td>{{ item.powertype }}</td>
+                            </tr>
+                            <tr>
+                                <td>Номер свідоцтва</td>
+                                <td>{{ item.certificatenumber }}</td>
+                            </tr>
+                            <tr>
+                                <td>Дата видачі сертифікату</td>
+                                <td>{{ item.setdate }}</td>
+                            </tr>
+                            <tr>
+                                <td>Відомості про перерозподіл арбітражного керуючого у справі</td>
+                                <td>{{ item.notes }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,13 +1,13 @@
-<div class="form-group" ng-controller="JudgeCtrl">
+<div class="form-group">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default panel-table">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col col-xs-6">
-                        <h2 class="panel-title">Судді</h2>
+                        <h3 class="panel-title">Суди</h3>
                     </div>
                     <div class="col col-xs-6 text-right">
-                        <a href="#/judge/add" type="button" class="btn btn-primary ">Додати суддю</a>
+                        <a href="#/court/add" type="button" class="btn btn-primary ">Додати суд</a>
                     </div>
                 </div>
             </div>
@@ -19,35 +19,29 @@
                     <thead>
                     <tr>
 
-                        <th>Ім'я</th>
-                        <th>По-батькові</th>
-                        <th >Прізвище</th>
+                        <th>Код суду</th>
+                        <th>Найменування суду</th>
+                        <th >Адреса суду</th>
                         <th><em class="fa fa-cog"></em></th>
 
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="item in filteredJudges">
-                        <td  >{{ item.name }}</td>
-                        <td  >{{ item.surname }}</td>
-                        <td  >{{ item.middlename }}</td>
+                    <tr ng-repeat="item in filteredCourts">
+                        <td>{{ item.number }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.address }}</td>
                         <td align="center">
-                            <button  class="btn btn-default" ng-click="editStart(item)"><em class="fa fa-pencil"></em></button>
-                            <button type="button" class="btn btn-danger" data-target="#modal-1" data-toggle="modal"  ng-click="$parent.todelete = item" >
+                            <button class="btn btn-default" ng-click="editStart(item)"><em class="fa fa-pencil"></em></button>
+                            <button type="button" class="btn btn-danger" data-target="#modal-1" data-toggle="modal" ng-click="$parent.todelete = item">
                                 <em class="fa fa-trash"></em>
-
                             </button>
                         </td>
                     </tr>
                     </tbody>
-
-
                 </table>
-
-
             </div>
         </div>
     </div>
     <div ng-include="'/static/app/views/deleteConfirm.html'"></div>
 </div>
-

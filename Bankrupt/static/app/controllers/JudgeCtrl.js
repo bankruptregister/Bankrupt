@@ -3,29 +3,22 @@ angular.module("Bankrupt").controller("JudgeCtrl", function ($scope, $http, $res
     $scope.judgeList = Judge.query();
 
     //API
-    $scope.update = function () {
-        $scope.judgeList = Judge.query();
-    };
     $scope.delete = function (item) {
         if (angular.isDefined(item)) {
             item.$remove().then(function () {
-                $scope.judgeList.splice($scope.judgeList.indexOf(item), 1);
-                alert("Удален");
+                 $scope.judgeList.splice($scope.judgeList.indexOf(item), 1);
             });
         }
     };
     $scope.add = function (item) {
         new Judge(item).$save().then(function (item) {
-            $scope.judgeList.push(item);
-
+             $scope.judgeList.push(item);
         }, function () {
-
         });
         $location.path("/judge");
     };
     $scope.edit = function (item) {
         item.$save().then(function () {
-            alert("Edited");
             $location.path("judge/");
         });
     };
@@ -35,10 +28,10 @@ angular.module("Bankrupt").controller("JudgeCtrl", function ($scope, $http, $res
     $scope.currentPage = 1;
     $scope.maxSize = 7;
     $scope.pageCount = function () {
-        return Math.ceil($scope.judgeList.length / $scope.itemsPerPage);
+        return Math.ceil( $scope.judgeList.length / $scope.itemsPerPage);
     };
     $scope.judgeList.$promise.then(function () {
-        $scope.totalItems = $scope.judgeList.length;
+        $scope.totalItems =  $scope.judgeList.length;
         $scope.$watch('currentPage + itemsPerPage + judgeList.length', function () {
             var begin = (($scope.currentPage - 1) * $scope.itemsPerPage),
                 end = begin + $scope.itemsPerPage;
@@ -47,13 +40,6 @@ angular.module("Bankrupt").controller("JudgeCtrl", function ($scope, $http, $res
         });
     });
 
-    //Говнокод
-    $scope.saveDel = function (item) {
-        $scope.choice = item;
-    };
-    $scope.confirmDel = function () {
-        $scope.delete($scope.choice);
-    };
     $scope.editStart = function (item) {
         $location.path("judge/edit");
         $rootScope.currentItem = item;
@@ -64,3 +50,4 @@ angular.module("Bankrupt").controller("JudgeCtrl", function ($scope, $http, $res
 
 
 });
+

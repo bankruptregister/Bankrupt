@@ -1,0 +1,67 @@
+<div class="form-group" style="margin-left: 30%" >
+    <div class="col-md-6" >
+        <div class="form-area">
+            <form role="form" name="myForm" novalidate>
+                <h3 style="margin-top: 30px; margin-bottom: 60px;" >Створення нового арбітражного керуючого</h3>
+                <div class="form-group">
+                    <label class="control-label" >Номер сертифікату</label>
+                    <input class="form-control" type="text"
+                           name="certificatenumber" required pattern="\d{6}"
+                           ng-model="item.certificatenumber" />
+                    <div class="error" ng-show="myForm.certificatenumber.$dirty && myForm.certificatenumber.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.certificatenumber.$error.pattern">
+                        Поле має містити 6 цифр
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label " >Вид повноважень</label>
+                    <input class="form-control" type="text"
+                           name="powertype" required minlength="2" maxlength="40"
+                           ng-model="item.powertype" />
+                    <div class="error" ng-show="myForm.powertype.$dirty && myForm.powertype.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                    <div class="error" ng-show="myForm.powertype.$error.minlength || myForm.powertype.$error.maxlength">
+                        Поле має містити від 2-х до 40 символів
+                    </div>
+                </div>
+                <div class="form-group start-date">
+                    <label class="control-label " >Дата видачі сертифікату:</label>
+
+                    <div class="input-group start-date">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true">
+                                                              </span>
+                        </span>
+                        <input type="date" class="form-control"
+                               datepicker-popup ng-model="item.setdate" is-open="o1"
+                                show-weeks="false" ng-focus="o1 = true"
+                               ng-required="true" close-text="Close" name="setdate"
+                        />
+                    </div>
+                    <div class="error" ng-show="myForm.setdate.$dirty && myForm.setdate.$error.required">
+                        Поле обов'язкове для заповнення
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label " for="Notes">Відомості про перерозподіл арбітражного керуючого у справі</label>
+                    <textarea class="form-control" type="textarea" id="Notes" rows="3" maxlength="20" name="notes" ng-model="item.notes" ></textarea>
+                    <div class="error" ng-show=" myForm.notes.$error.maxlength">
+                        Поле має містити від 5-ти до 20 символів
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right" ng-disabled="myForm.$invalid" ng-click="stripAndAdd(item)">
+                    Додати
+                </button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
