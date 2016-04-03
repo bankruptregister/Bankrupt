@@ -8,20 +8,38 @@
                     </div>
                     <div class="col col-xs-6 text-right">
                         <a href="#act/add" type="button" class="btn btn-primary ">Додати справу</a>
+                        <button type="button" class="btn btn-primary" ng-model="archiveFlag" btn-checkbox >Архів</button>
                     </div>
                 </div>
             </div>
             <div class="panel-body">
-                <div class="text-center">
-                    <pagination max-size="maxSize" boundary-links="true" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>
-                </div>
-                <table class="table table-striped table-bordered table-list">
+
+                <table class="table table-striped table-bordered table-list" st-set-filter="actSearch" st-table="displayedCollection"
+                       st-safe-src="actList" >
+
+
                     <thead>
                     <tr>
+                        <td colspan="3">
+                            <st-debter-search archive="{{ archiveFlag }}"></st-debter-search>
+                        </td>
+                        <td colspan="5">
+                            <st-judge-search archive="{{ archiveFlag }}"></st-judge-search>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <st-comissioner-search archive="{{ archiveFlag }}"></st-comissioner-search>
+                        </td>
+                        <td colspan="5">
+                            <st-court-search archive="{{ archiveFlag }}"></st-court-search>
+                        </td>
+                    </tr>
+                    <tr>
 
-                        <th >Номер справи</th>
-                        <th>Дата порушення справи</th>
-                        <th>Дата завершення справи</th>
+                        <th st-sort="id" class="pointer">Номер справи</th>
+                        <th st-sort="startdate" class="pointer">Дата порушення справи</th>
+                        <th st-sort="finishdate" class="pointer">Дата завершення справи</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -29,19 +47,42 @@
                         <th><em class="fa fa-cog"></em></th>
 
                     </tr>
+                    <tr>
+
+                        <td><input st-search="id" class="input-sm form-control" type="search"/></td>
+                        <td><input st-search="startdate" class="input-sm form-control" type="search"/></td>
+                        <td><input st-search="finishdate" class="input-sm form-control" type="search"/></td>
+                        <td></td>
+
+
+                    </tr>
+
+
                     </thead>
+
+
                     <tbody>
-                    <tr ng-repeat="item in filteredacts">
+                    <tr ng-repeat="item in displayedCollection | filter: {archive : archiveFlag}">
                         <td>{{ item.id }}</td>
                         <td>{{ item.startdate }}</td>
                         <td>{{ item.finishdate }}</td>
-                        <td><button class="btn btn-primary" ng-click="judgeDetails(item)" >Суддя</button></td>
-                         <td><button class="btn btn-danger" ng-click="debterDetails(item)">Боржник</button></td>
-                         <td><button class="btn btn-info" ng-click="comissionerDetails(item)">Розпорядник</button></td>
-                         <td><button class="btn btn-warning" ng-click="courtDetails(item)">Суд</button></td>
+                        <td>
+                            <button class="btn btn-primary" ng-click="judgeDetails(item)">Суддя</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" ng-click="debterDetails(item)">Боржник</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-info" ng-click="comissionerDetails(item)">Розпорядник</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning" ng-click="courtDetails(item)">Суд</button>
+                        </td>
                         <td align="center">
-                            <button class="btn btn-default" ng-click="editStart(item)"><em class="fa fa-pencil"></em></button>
-                            <button type="button" class="btn btn-danger" data-target="#modal-1" data-toggle="modal" ng-click="$parent.todelete = item">
+                            <button ng-hide="archiveFlag" class="btn btn-default" ng-click="editStart(item)"><em class="fa fa-pencil"></em>
+                            </button>
+                            <button ng-hide="archiveFlag" type="button" class="btn btn-danger" data-target="#modal-1" data-toggle="modal"
+                                    ng-click="$parent.todelete = item">
                                 <em class="fa fa-trash"></em>
                             </button>
                         </td>

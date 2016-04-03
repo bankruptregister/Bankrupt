@@ -1,16 +1,15 @@
 angular.module("Bankrupt").controller("ActCtrl",
-    function ($scope, $http, $resource, $location, $rootScope, actData, dataStripper,detailsModal, baseUrl) {
+    function ($scope, $http, $resource, $location, $rootScope, actData, dataStripper,detailsModal,filterFilter, baseUrl) {
 
         var Act = $resource(baseUrl + "act/:id/", {id: "@id"});
         $scope.actList = Act.query();
+        $scope.archiveFlag = false;
+
 
         //API
         $scope.delete = function (item) {
-            if (angular.isDefined(item)) {
-                item.$remove().then(function () {
-                    $scope.actList.splice($scope.actList.indexOf(item), 1);
-                });
-            }
+            item.archive = true;
+            item.$save();
         };
         $scope.add = function (item) {
             new Act(item).$save().then(function (item) {
@@ -25,21 +24,6 @@ angular.module("Bankrupt").controller("ActCtrl",
         //
 
         //Pagination
-        $scope.itemsPerPage = 10;
-        $scope.currentPage = 1;
-        $scope.maxSize = 7;
-        $scope.pageCount = function () {
-            return Math.ceil($scope.actList.length / $scope.itemsPerPage);
-        };
-        $scope.actList.$promise.then(function () {
-            $scope.totalItems = $scope.actList.length;
-            $scope.$watch('currentPage + itemsPerPage + actList.length', function () {
-                var begin = (($scope.currentPage - 1) * $scope.itemsPerPage),
-                    end = begin + $scope.itemsPerPage;
-
-                $scope.filteredacts = $scope.actList.slice(begin, end);
-            });
-        });
         //
 
         $scope.editStart = function (item) {
@@ -64,31 +48,31 @@ angular.module("Bankrupt").controller("ActCtrl",
         };
 
         //DropDowns
-        $scope.getJudges = function () {
+        $scope.getJudges = function (archiveFl) {
             $scope.loadjudge = true;
             actData.getJudges().then(function (response) {
-                $scope.judges = response.data;
+                $scope.judges = angular.isDefined(archiveFl) ? filterFilter(response.data,{archive: archiveFl}): response.data;
                 $scope.loadjudge = false;
             });
         };
-        $scope.getCourts = function () {
+        $scope.getCourts = function (archiveFl) {
             $scope.loadcourt = true;
             actData.getCourts().then(function (response) {
-                $scope.courts = response.data;
+                $scope.courts = angular.isDefined(archiveFl) ? filterFilter(response.data,{archive: archiveFl}): response.data;
                 $scope.loadcourt = false;
             });
         };
-        $scope.getComissioners = function () {
+        $scope.getComissioners = function (archiveFl) {
             $scope.loadcomissioner = true;
             actData.getComissioners().then(function (response) {
-                $scope.comissioners = response.data;
+                $scope.comissioners = angular.isDefined(archiveFl) ? filterFilter(response.data,{archive: archiveFl}): response.data;
                 $scope.loadcomissioner = false;
             });
         };
-        $scope.getDebters = function () {
+        $scope.getDebters = function (archiveFl) {
             $scope.loaddebter = true;
             actData.getDebters().then(function (response) {
-                $scope.debters = response.data;
+                $scope.debters = angular.isDefined(archiveFl) ? filterFilter(response.data,{archive: archiveFl}): response.data;
                 $scope.loaddebter = false;
             });
         };
@@ -117,6 +101,17 @@ angular.module("Bankrupt").controller("ActCtrl",
             detailsModal.showModal(actData.getDebter(item.debterid),"debter");
         };
         //
+        //
+        //$scope.$watch('item.debterid',function(newValue,oldValue){
+        //    if(newValue && newValue.id)
+        //        $scope.displayedCollection = filterFilter( $scope.displayedCollection,{debterid: newValue.id});
+        //    else
+        //        $scope.displayedCollection = $scope.actList;
+        //
+        //
+        //
+        //});
+
 
     });
 

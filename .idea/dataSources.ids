@@ -385,114 +385,134 @@ model</columns>
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <key id="102" parent="12" name="PRIMARY">
+      <column id="102" parent="12" name="Archive">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <key id="103" parent="12" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="103" parent="12" name="RestApi_act_ComissionerId_23f72f72_fk">
+      <foreign-key id="104" parent="12" name="RestApi_act_ComissionerId_23f72f72_fk">
         <columns>ComissionerId</columns>
         <ref-key>restapi_comissioner.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="104" parent="12" name="RestApi_act_CourtId_458258d0_fk">
+      <foreign-key id="105" parent="12" name="RestApi_act_CourtId_458258d0_fk">
         <columns>CourtId</columns>
         <ref-key>restapi_court.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="105" parent="12" name="RestApi_act_DebterId_7b010aa4_fk">
+      <foreign-key id="106" parent="12" name="RestApi_act_DebterId_7b010aa4_fk">
         <columns>DebterId</columns>
         <ref-key>restapi_debter.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="106" parent="12" name="RestApi_act_JudgeId_5b2fd9c_fk">
+      <foreign-key id="107" parent="12" name="RestApi_act_JudgeId_5b2fd9c_fk">
         <columns>JudgeId</columns>
         <ref-key>restapi_judge.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="107" parent="13" name="id">
+      <column id="108" parent="13" name="id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="108" parent="13" name="PowerType">
+      <column id="109" parent="13" name="PowerType">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="109" parent="13" name="CertificateNumber">
+      <column id="110" parent="13" name="CertificateNumber">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="110" parent="13" name="SetDate">
+      <column id="111" parent="13" name="SetDate">
         <data-type>date</data-type>
       </column>
-      <column id="111" parent="13" name="Notes">
+      <column id="112" parent="13" name="Notes">
         <data-type>varchar(45)</data-type>
       </column>
-      <key id="112" parent="13" name="PRIMARY">
+      <column id="113" parent="13" name="Archive">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <key id="114" parent="13" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="113" parent="14" name="id">
+      <column id="115" parent="14" name="id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="114" parent="14" name="Number">
+      <column id="116" parent="14" name="Number">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="115" parent="14" name="Address">
+      <column id="117" parent="14" name="Address">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="116" parent="14" name="Name">
+      <column id="118" parent="14" name="Name">
         <data-type>varchar(45)</data-type>
       </column>
-      <key id="117" parent="14" name="PRIMARY">
+      <column id="119" parent="14" name="Archive">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <key id="120" parent="14" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="118" parent="15" name="id">
+      <column id="121" parent="15" name="id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="119" parent="15" name="Type">
+      <column id="122" parent="15" name="Type">
         <data-type>int(11)</data-type>
       </column>
-      <column id="120" parent="15" name="Name">
+      <column id="123" parent="15" name="Name">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="121" parent="15" name="Number">
+      <column id="124" parent="15" name="Number">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="122" parent="15" name="KVED">
+      <column id="125" parent="15" name="KVED">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="123" parent="15" name="StatePart">
+      <column id="126" parent="15" name="StatePart">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="124" parent="15" name="ActName">
+      <column id="127" parent="15" name="ActName">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="125" parent="15" name="Notes">
+      <column id="128" parent="15" name="Notes">
         <data-type>longtext</data-type>
       </column>
-      <key id="126" parent="15" name="PRIMARY">
+      <column id="129" parent="15" name="Archive">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <key id="130" parent="15" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="127" parent="16" name="id">
+      <column id="131" parent="16" name="id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="128" parent="16" name="Name">
+      <column id="132" parent="16" name="Name">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="129" parent="16" name="Surname">
+      <column id="133" parent="16" name="Surname">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="130" parent="16" name="MiddleName">
+      <column id="134" parent="16" name="MiddleName">
         <data-type>varchar(45)</data-type>
       </column>
-      <key id="131" parent="16" name="PRIMARY">
+      <column id="135" parent="16" name="Archive">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <key id="136" parent="16" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>

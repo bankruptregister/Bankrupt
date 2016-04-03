@@ -1,0 +1,4 @@
+<input type="text" ng-model="court" placeholder="Пошук за судом"
+                           typeahead="item as item.name +' '+item.address+' '+ item.number for item in courts | filter: $viewValue | limitTo : 7"
+                            class="form-control" ng-focus="getCourts()"
+                    />

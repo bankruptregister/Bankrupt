@@ -23,6 +23,7 @@
     <script src="{% static 'js/angular/angular-mocks.js' %}"></script>
     <script src="{% static 'js/angular/angular-route.js' %}"></script>
     <script src="{% static 'js/angular/ui-bootstrap-tpls-0.13.0.js' %}"></script>
+    <script src="{% static 'js/angular/smart-table.js' %}"></script>
     <script src="{% static 'app/app.js' %}"> </script>
     <script src="{% static 'app/controllers/JudgeCtrl.js' %}"> </script>
     <script src="{% static 'app/controllers/DebterCtrl.js' %}"> </script>
@@ -30,12 +31,19 @@
     <script src="{% static 'app/controllers/CourtCtrl.js' %}"> </script>
     <script src="{% static 'app/controllers/ActCtrl.js' %}"> </script>
     <script src="{% static 'app/controllers/DetailsCtrl.js' %}"> </script>
+    <script src="{% static 'app/directives/customSearch.js' %}"> </script>
+    <script src="{% static 'app/filters/actSearch.js' %}"> </script>
+
 
     <script src="{% static 'app/services/actData.js' %}"> </script>
     <script src="{% static 'app/services/dataStripper.js' %}"> </script>
     <script src="{% static 'app/services/detailsModal.js' %}"> </script>
 
-
+    <style>
+        .pointer{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body ng-app="Bankrupt" >
 

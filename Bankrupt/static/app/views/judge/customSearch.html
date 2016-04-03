@@ -1,0 +1,5 @@
+
+<input type="text" ng-model="judge" placeholder="Пошук за суддею"
+                           typeahead="item as item.name +' '+item.surname+' '+ item.middlename for item in judges | filter: $viewValue | limitTo : 7"
+                            class="form-control" ng-focus="getJudges()"
+                    />

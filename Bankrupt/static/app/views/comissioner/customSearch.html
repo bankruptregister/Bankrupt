@@ -1,0 +1,4 @@
+<input type="text" ng-model="comissioner"  placeholder="Пошук за арбітражним керуючим"
+                           typeahead="item as item.certificatenumber +' '+item.powertype for item in comissioners | filter: $viewValue | limitTo : 7"
+                            class="form-control" ng-focus="getComissioners()"
+                    />

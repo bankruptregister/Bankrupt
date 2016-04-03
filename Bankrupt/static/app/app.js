@@ -1,4 +1,4 @@
-angular.module("Bankrupt",["ngRoute","ngResource","ui.bootstrap"])
+ angular.module("Bankrupt",["ngRoute","ngResource","ui.bootstrap","smart-table"])
     .constant("baseUrl","/restapi/")
     .config(function($routeProvider,$resourceProvider){
         $resourceProvider.defaults.stripTrailingSlashes = false;
@@ -72,4 +72,7 @@ angular.module("Bankrupt",["ngRoute","ngResource","ui.bootstrap"])
             controller: "ComissionerCtrl"
         });
 });
+
+
+
 

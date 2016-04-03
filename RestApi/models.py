@@ -21,7 +21,7 @@ class Act(models.Model):
     comissionerid = models.ForeignKey('Comissioner', db_column='ComissionerId')  # Field name made lowercase.
     courtid = models.ForeignKey('Court', db_column='CourtId')  # Field name made lowercase.
     debterid = models.ForeignKey('Debter', db_column='DebterId')  # Field name made lowercase.
-
+    archive = models.BooleanField(db_column="Archive",default=False)
 
 class Comissioner(models.Model):
     id = models.AutoField(primary_key=True,unique=True)  # Field name made lowercase.
@@ -29,13 +29,14 @@ class Comissioner(models.Model):
     certificatenumber = models.CharField(db_column='CertificateNumber', max_length=45, blank=True, null=True)  # Field name made lowercase.
     setdate = models.DateField(db_column='SetDate', blank=True, null=True)  # Field name made lowercase.
     notes = models.CharField(db_column='Notes', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    archive = models.BooleanField(db_column="Archive",default=False)
 
 class Court(models.Model):
     id = models.AutoField(primary_key=True,unique=True)  # Field name made lowercase.
     number = models.CharField(db_column='Number', max_length=45, blank=True, null=True)  # Field name made lowercase.
     address = models.CharField(db_column='Address', max_length=100, blank=True, null=True)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=45, blank=True, null=True)  # Field name made lowercase.
-
+    archive = models.BooleanField(db_column="Archive",default=False)
 
 class Debter(models.Model):
     id = models.AutoField(primary_key=True,unique=True)  # Field name made lowercase.
@@ -46,6 +47,7 @@ class Debter(models.Model):
     statepart = models.CharField(db_column='StatePart', max_length=45, blank=True, null=True)  # Field name made lowercase.
     actname = models.CharField(db_column='ActName', max_length=45, blank=True, null=True)  # Field name made lowercase.
     notes = models.TextField(db_column='Notes', blank=True, null=True)  # Field name made lowercase.
+    archive = models.BooleanField(db_column="Archive",default=False)
 
 
 class Judge(models.Model):
@@ -53,4 +55,5 @@ class Judge(models.Model):
     name = models.CharField(db_column='Name', max_length=45, blank=True, null=True)  # Field name made lowercase.
     surname = models.CharField(db_column='Surname', max_length=45, blank=True, null=True)  # Field name made lowercase.
     middlename = models.CharField(db_column='MiddleName', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    archive = models.BooleanField(db_column="Archive",default=False)
 

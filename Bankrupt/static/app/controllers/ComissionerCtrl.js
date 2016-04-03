@@ -1,14 +1,13 @@
 angular.module("Bankrupt").controller("ComissionerCtrl", function ($scope, $http, $resource, $location, $rootScope,dataStripper, baseUrl) {
     var Comissioner = $resource(baseUrl + "comissioner/:id/", {id: "@id"});
     $scope.comissionerList = Comissioner.query();
+    $scope.archiveFlag = false;
+
 
     //API
     $scope.delete = function (item) {
-        if (angular.isDefined(item)) {
-            item.$remove().then(function () {
-                 $scope.comissionerList.splice($scope.comissionerList.indexOf(item), 1);
-            });
-        }
+        item.archive = true;
+        item.$save();
     };
     $scope.add = function (item) {
         new Comissioner(item).$save().then(function (item) {
@@ -23,22 +22,6 @@ angular.module("Bankrupt").controller("ComissionerCtrl", function ($scope, $http
         });
     };
 
-    //Pagination
-    $scope.itemsPerPage = 10;
-    $scope.currentPage = 1;
-    $scope.maxSize = 7;
-    $scope.pageCount = function () {
-        return Math.ceil( $scope.comissionerList.length / $scope.itemsPerPage);
-    };
-    $scope.comissionerList.$promise.then(function () {
-        $scope.totalItems =  $scope.comissionerList.length;
-        $scope.$watch('currentPage + itemsPerPage + comissionerList.length', function () {
-            var begin = (($scope.currentPage - 1) * $scope.itemsPerPage),
-                end = begin + $scope.itemsPerPage;
-
-            $scope.filteredComissioners = $scope.comissionerList.slice(begin, end);
-        });
-    });
 
     $scope.editStart = function (item) {
         $location.path("comissioner/edit");

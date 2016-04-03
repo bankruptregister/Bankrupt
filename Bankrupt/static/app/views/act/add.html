@@ -42,7 +42,7 @@
                     <input type="text" ng-model="item.debterid" placeholder="Оберіть боржника"
                            typeahead="item as item.name +' '+item.number+' '+ item.kved for item in debters | filter: $viewValue | limitTo : 10"
                            typeahead-loading="loaddebter" class="form-control" typeahead-editable="false"
-                           ng-focus="getDebters()" name="debter" ng-required="true"
+                           ng-focus="getDebters(false)" name="debter" ng-required="true"
                     />
                     <div class="error" ng-show="myForm.debter.$dirty && myForm.debter.$error.required">
                         Поле обов'язкове для заповнення
@@ -55,7 +55,7 @@
                     <input type="text" ng-model="item.courtid" placeholder="Оберіть суд"
                            typeahead="item as item.name +' '+item.address+' '+ item.number for item in courts | filter: $viewValue | limitTo : 10"
                            typeahead-loading="loadcourt" class="form-control" typeahead-editable="false" name="court"
-                           ng-focus="getCourts()" ng-required="true"
+                           ng-focus="getCourts(false)" ng-required="true"
                     />
                     <div class="error" ng-show="myForm.court.$dirty && myForm.court.$error.required">
                         Поле обов'язкове для заповнення
@@ -67,7 +67,7 @@
                     <input type="text" ng-model="item.judgeid" placeholder="Оберіть суддю"
                            typeahead="item as item.name +' '+item.surname+' '+ item.middlename for item in judges | filter: $viewValue | limitTo : 10"
                            typeahead-loading="loadjudge" class="form-control" typeahead-editable="false" name="judge"
-                           ng-focus="getJudges()" ng-required="true"
+                           ng-focus="getJudges(false)" ng-required="true"
                     />
                     <div class="error" ng-show="myForm.judge.$dirty && myForm.judge.$error.required">
                         Поле обов'язкове для заповнення
@@ -79,7 +79,7 @@
                     <input type="text" ng-model="item.comissionerid"  placeholder="Оберіть арбітражного керуючого"
                            typeahead="item as item.certificatenumber +' '+item.powertype for item in comissioners | filter: $viewValue | limitTo : 10"
                            typeahead-loading="loadcomissioner" typeahead-editable="false" name="comissioner"
-                           class="form-control" ng-focus="getComissioners()" ng-required="true"
+                           class="form-control" ng-focus="getComissioners(false)" ng-required="true"
                     />
                     <div class="error" ng-show="myForm.comissioner.$dirty && myForm.comissioner.$error.required">
                         Поле обов'язкове для заповнення

@@ -11,7 +11,12 @@
   font-weight: normal;
   font-style: normal;
 }
-.fa {
+.st-sort-ascent,
+.st-sort-descent{
+  font: normal normal bold 16px/1 FontAwesome;
+}
+.fa
+{
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -791,11 +796,14 @@
   content: "\f0dc";
 }
 .fa-sort-down:before,
-.fa-sort-desc:before {
+.fa-sort-desc:before,
+.st-sort-descent:before
+{
   content: "\f0dd";
 }
 .fa-sort-up:before,
-.fa-sort-asc:before {
+.fa-sort-asc:before,
+.st-sort-ascent:before{
   content: "\f0de";
 }
 .fa-envelope:before {
