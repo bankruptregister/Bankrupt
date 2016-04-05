@@ -21,14 +21,12 @@
                         <th st-sort="certificatenumber" class="pointer">Номер сертифікату</th>
                         <th st-sort="powertype" class="pointer">Вид повноважень</th>
                         <th st-sort="setdate" class="pointer" >Дата видачі сертифікату</th>
-                        <th st-sort="notes" class="pointer">Відомості про перерозподіл арбітражного керуючого у справі</th>
                         <th><em class="fa fa-cog"></em></th>
                     </tr>
                     <tr>
-                        <th colspan="4">
-                            <input placeholder="Глобальний пошук" class="input-sm form-control" type="search" st-search/>
-                        </th>
-
+                        <th><input st-search="certificatenumber"  class="input-sm form-control" type="search"/></th>
+                        <th><input st-search="powertype"  class="input-sm form-control" type="search"/></th>
+                        <th><input st-search="setdate"  class="input-sm form-control" type="search"/></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -36,9 +34,9 @@
                         <td  >{{ item.certificatenumber }}</td>
                         <td  >{{ item.powertype }}</td>
                         <td  >{{ item.setdate }}</td>
-                        <td  >{{ item.notes }}</td>
 
                         <td align="center">
+                            <button  class="btn btn-default" ng-click="comissionerDetails(item)">Деталі</button>
                             <button ng-hide="archiveFlag"   class="btn btn-default" ng-click="editStart(item)"><em class="fa fa-pencil"></em></button>
                             <button ng-hide="archiveFlag"  type="button" class="btn btn-danger" data-target="#modal-1" data-toggle="modal"  ng-click="$parent.todelete = item" >
                                 <em class="fa fa-trash"></em>

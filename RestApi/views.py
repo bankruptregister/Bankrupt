@@ -185,7 +185,7 @@ def generate_acts(request,count):
     Debter.objects.all().delete()
     Court.objects.all().delete()
 
-    word_base = [" Jack "," Ron "," Tonni "," Moker "," genster "," Dobrei"," asistant"," Gogo"," Allah"]
+    word_base = ["Jack ","Ron ","Tonni ","Moker ","genster ","Dobrei","asistant","Gogo","Allah"]
     surname_base = ["Peterson", "Ronny","Wilson","Test1","Rew","Gostly","Amigo"]
     word_len =len(word_base)-1
     surname_len = len(surname_base)-1

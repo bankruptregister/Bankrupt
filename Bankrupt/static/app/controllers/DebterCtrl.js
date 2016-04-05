@@ -22,23 +22,6 @@ angular.module("Bankrupt").controller("DebterCtrl", function ($scope, $http, $re
         });
     };
 
-    //Pagination
-    //$scope.itemsPerPage = 10;
-    //$scope.currentPage = 1;
-    //$scope.maxSize = 7;
-    //$scope.pageCount = function () {
-    //    return Math.ceil( $scope.debterList.length / $scope.itemsPerPage);
-    //};
-    //$scope.debterList.$promise.then(function () {
-    //    $scope.totalItems =  $scope.debterList.length;
-    //    $scope.$watch('currentPage + itemsPerPage + debterList.length', function () {
-    //        var begin = (($scope.currentPage - 1) * $scope.itemsPerPage),
-    //            end = begin + $scope.itemsPerPage;
-    //
-    //        $scope.filteredDebters = $scope.debterList.slice(begin, end);
-    //    });
-    //});
-
     $scope.editStart = function (item) {
         $location.path("debter/edit");
         item.number = parseInt(item.number);

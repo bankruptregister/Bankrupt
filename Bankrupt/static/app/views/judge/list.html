@@ -28,16 +28,16 @@
 
                     </tr>
                     <tr>
-                        <th colspan="4">
-                            <input st-search placeholder="Глобальний пошук" class="input-sm form-control" type="search"/>
-                        </th>
+                        <th><input st-search="name" class="input-sm form-control" type="search"/></th>
+                        <th><input st-search="middlename" class="input-sm form-control" type="search"/></th>
+                        <th><input st-search="surname" class="input-sm form-control" type="search"/></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="item in displayedCollection | filter: {archive : archiveFlag}">
                         <td>{{ item.name }}</td>
-                        <td>{{ item.surname }}</td>
                         <td>{{ item.middlename }}</td>
+                        <td>{{ item.surname }}</td>
                         <td align="center">
                             <button ng-hide="archiveFlag" class="btn btn-default" ng-click="editStart(item)"><em class="fa fa-pencil"></em>
                             </button>

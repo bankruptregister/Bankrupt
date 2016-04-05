@@ -1,4 +1,5 @@
-angular.module("Bankrupt").controller("ComissionerCtrl", function ($scope, $http, $resource, $location, $rootScope,dataStripper, baseUrl) {
+angular.module("Bankrupt").controller("ComissionerCtrl",
+    function ($scope, $http, $resource, $location, $rootScope,dataStripper,detailsModal,actData, baseUrl) {
     var Comissioner = $resource(baseUrl + "comissioner/:id/", {id: "@id"});
     $scope.comissionerList = Comissioner.query();
     $scope.archiveFlag = false;
@@ -34,6 +35,9 @@ angular.module("Bankrupt").controller("ComissionerCtrl", function ($scope, $http
     };
     $scope.stripAndEdit = function(item){
         $scope.edit(dataStripper.stripComm(angular.copy(item)));
+    };
+    $scope.comissionerDetails = function (item) {
+            detailsModal.showModal(actData.getComissioner(item.id),"comissioner");
     };
 
 
