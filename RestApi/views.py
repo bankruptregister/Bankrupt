@@ -12,6 +12,12 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework import generics
 from random import randint
+import random
+
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 def getIndex(request):
     return render_to_response('index.html')
@@ -177,7 +183,62 @@ def get_object(id,model):
             return model.objects.get(id=id)
         except model.DoesNotExist:
             raise Http404
+# def generate_acts(request,count):
+#     count = int(count)
+#     Act.objects.all().delete()
+#     Judge.objects.all().delete()
+#     Comissioner.objects.all().delete()
+#     Debter.objects.all().delete()
+#     Court.objects.all().delete()
+#
+#     word_base = ["Jack ","Ron ","Tonni ","Moker ","genster ","Dobrei","asistant","Gogo","Allah"]
+#     surname_base = ["Peterson", "Ronny","Wilson","Test1","Rew","Gostly","Amigo"]
+#     word_len =len(word_base)-1
+#     surname_len = len(surname_base)-1
+#     for i in xrange(count):
+#         judge = Judge(name = word_base[randint(0,word_len)],
+#                       surname = surname_base[randint(0,surname_len)],
+#                       middlename = word_base[randint(0,word_len)])
+#         judge.save()
+#         debter = Debter(type = randint(0,1),
+#                         name = word_base[randint(0,word_len)],
+#                         number = word_base[randint(0,word_len)],
+#                         kved = "ONE",
+#                         statepart = surname_base[randint(0,surname_len)],
+#                         actname = word_base[randint(0,word_len)],
+#                         notes = str(randint(0,100)))
+#         debter.save()
+#         court = Court(number =str(randint(0,1000)),
+#                       address = "Kiev",
+#                       name = word_base[randint(0,word_len)])
+#         court.save()
+#         comissioner = Comissioner(powertype="Type1",
+#                                   certificatenumber = str(randint(10000,99999)),
+#                                   setdate = datetime.datetime.now(),
+#                                   notes = "Hello"*2 )
+#         comissioner.save()
+#         act = Act(startdate = datetime.datetime.now(),
+#                   finishdate = datetime.datetime.now(),
+#                   notes = "judge is "+judge.name,
+#                   judgeid = judge,
+#                   comissionerid = comissioner,
+#                   courtid = court,
+#                   debterid = debter)
+#         act.save()
+#     return redirect("/index")
+
+def exists_id(data,obj):
+    if "id" in data:
+        try:
+            print obj.objects.get(id=data["id"])
+            return True
+        except:
+            return False
+    return False
+
 def generate_acts(request,count):
+
+
     count = int(count)
     Act.objects.all().delete()
     Judge.objects.all().delete()
@@ -185,28 +246,26 @@ def generate_acts(request,count):
     Debter.objects.all().delete()
     Court.objects.all().delete()
 
-    word_base = ["Jack ","Ron ","Tonni ","Moker ","genster ","Dobrei","asistant","Gogo","Allah"]
-    surname_base = ["Peterson", "Ronny","Wilson","Test1","Rew","Gostly","Amigo"]
-    word_len =len(word_base)-1
-    surname_len = len(surname_base)-1
+    word_base = open(os.path.join(BASE_DIR, 'Bankrupt/static/names.txt'),"r").read().split("\n")
+    surname_base = open(os.path.join(BASE_DIR, 'Bankrupt/static/surnames.txt'),"r").read().split("\n")
     for i in xrange(count):
-        judge = Judge(name = word_base[randint(0,word_len)],
-                      surname = surname_base[randint(0,surname_len)],
-                      middlename = word_base[randint(0,word_len)])
+        judge = Judge(name = random.choice(word_base),
+                      surname = random.choice(surname_base),
+                      middlename = random.choice(word_base))
         judge.save()
         debter = Debter(type = randint(0,1),
-                        name = word_base[randint(0,word_len)],
-                        number = word_base[randint(0,word_len)],
+                        name = random.choice(word_base),
+                        number = random.choice(word_base),
                         kved = "ONE",
-                        statepart = surname_base[randint(0,surname_len)],
-                        actname = word_base[randint(0,word_len)],
+                        statepart = random.choice(surname_base),
+                        actname = random.choice(word_base),
                         notes = str(randint(0,100)))
         debter.save()
         court = Court(number =str(randint(0,1000)),
                       address = "Kiev",
-                      name = word_base[randint(0,word_len)])
+                      name = random.choice(word_base))
         court.save()
-        comissioner = Comissioner(powertype="Type1",
+        comissioner = Comissioner(powertype=str("Type1"+str(randint(0,999))),
                                   certificatenumber = str(randint(10000,99999)),
                                   setdate = datetime.datetime.now(),
                                   notes = "Hello"*2 )
@@ -218,15 +277,6 @@ def generate_acts(request,count):
                   comissionerid = comissioner,
                   courtid = court,
                   debterid = debter)
+
         act.save()
     return redirect("/index")
-
-def exists_id(data,obj):
-    if "id" in data:
-        try:
-            print obj.objects.get(id=data["id"])
-            return True
-        except:
-            return False
-    return False
-

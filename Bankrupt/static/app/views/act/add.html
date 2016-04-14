@@ -14,7 +14,7 @@
                         <input type="date" class="form-control"
                                datepicker-popup ng-model="item.startdate" is-open="o1"
                                max-date="item.finishdate" show-weeks="false" ng-focus="o1 = true"
-                               ng-required="true" close-text="Close" id="start-date" name="createdate"
+                               ng-required="true" show-button-bar="false" id="start-date" name="createdate" readonly
                         />
                     </div>
                     <div class="error" ng-show="myForm.createdate.$dirty && myForm.createdate.$error.required">
@@ -32,7 +32,8 @@
                         <input type="date" class="form-control"
                                datepicker-popup ng-model="item.finishdate" is-open="o2"
                                min-date="item.startdate" show-weeks="false" ng-focus="o2 = true"
-                               close-text="Close" id="finish-date" ng-required="false"
+                                id="finish-date" ng-required="false" readonly
+                               show-button-bar="false"
                         />
                     </div>
                 </div>
